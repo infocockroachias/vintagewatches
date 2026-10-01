@@ -120,3 +120,66 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ————— ZAMANA design system ————— */
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #c9a227;
+  color: #111110;
+}
+
+/* Thin gold-tinted scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a22755;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a22788;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c9a22755 transparent;
+}
+
+/* Gold focus ring for keyboard navigation */
+:where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid #c9a227;
+  outline-offset: 2px;
+}
+
+/* Seamless brand marquee */
+@keyframes zamana-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-zamana-marquee {
+  animation: zamana-marquee 48s linear infinite;
+}
+.marquee-paused:hover .animate-zamana-marquee {
+  animation-play-state: paused;
+}
+
+/* Subtle film grain for hero / editorial bands */
+.zamana-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}

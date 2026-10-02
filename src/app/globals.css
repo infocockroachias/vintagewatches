@@ -45,8 +45,8 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: #FBF8F1;
+  --foreground: #1A1714;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -121,7 +121,7 @@
   }
 }
 
-/* ————— ZAMANA design system ————— */
+/* ————— ZAMANA design system — “Light Atelier” ————— */
 
 html {
   scroll-behavior: smooth;
@@ -129,7 +129,7 @@ html {
 
 ::selection {
   background: #c9a227;
-  color: #111110;
+  color: #fbf8f1;
 }
 
 /* Thin gold-tinted scrollbars */
@@ -154,7 +154,7 @@ html {
 
 /* Gold focus ring for keyboard navigation */
 :where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
-  outline: 2px solid #c9a227;
+  outline: 2px solid #a8842c;
   outline-offset: 2px;
 }
 
@@ -174,12 +174,59 @@ html {
   animation-play-state: paused;
 }
 
-/* Subtle film grain for hero / editorial bands */
+/* Subtle film grain for dark editorial bands (story / auction theatre) */
 .zamana-grain::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.07;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* Paper tooth for the cream canvas — almost invisible, warms large empty areas */
+.zamana-paper {
+  background-color: #fbf8f1;
+  background-image: radial-gradient(rgba(26, 23, 20, 0.022) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Gold shimmer sweep for primary buttons */
+.zamana-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #d9b545 0%, #c9a227 100%);
+  color: #1a1714;
+}
+.zamana-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zamana-cta:hover::after {
+  transform: translateX(120%);
+}
+
+/* Animated gold underline for nav links */
+.zamana-navlink {
+  position: relative;
+}
+.zamana-navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1.5px;
+  background: #a8842c;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zamana-navlink:hover::after,
+.zamana-navlink:focus-visible::after {
+  transform: scaleX(1);
 }

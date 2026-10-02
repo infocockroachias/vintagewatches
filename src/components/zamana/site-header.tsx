@@ -1,6 +1,7 @@
 "use client";
 
-// Sticky site header — blur, hairline, gold accents, mobile menu.
+// Sticky site header — cream glass, hairline, gold accents, mobile menu.
+// Brand = the ZAMANA wordmark only; the boutique is presented as online-only.
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -11,7 +12,7 @@ const NAV_LINKS = [
   { href: "#auctions", label: "Live Auctions" },
   { href: "#sell", label: "Sell Yours" },
   { href: "#story", label: "Our Story" },
-  { href: "#visit", label: "Visit Us" },
+  { href: "#concierge", label: "Contact" },
 ] as const;
 
 export default function SiteHeader() {
@@ -28,25 +29,31 @@ export default function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b border-[#2E2B26] backdrop-blur-md transition-colors duration-300",
-        scrolled ? "bg-[#111110]/90" : "bg-[#111110]/60"
+        "sticky top-0 z-50 border-b backdrop-blur-md transition-all duration-300",
+        scrolled
+          ? "border-[rgba(26,23,20,0.12)] bg-[#FBF8F1]/90 shadow-[0_10px_30px_-22px_rgba(26,23,20,0.4)]"
+          : "border-transparent bg-[#FBF8F1]/60"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
-        {/* Brand */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6 md:h-[72px]">
+        {/* Brand — wordmark only */}
         <a
           href="#top"
-          className="flex min-w-0 items-center gap-3"
+          className="group flex min-w-0 items-center gap-3"
           aria-label="ZAMANA — Vintage Timepieces, back to top"
         >
           <img
-            src="/brand/logo.png"
+            src="/brand/favicon.jpg"
             alt="ZAMANA gold monogram"
-            className="h-10 w-auto rounded"
+            className="h-10 w-10 rounded-full border border-[#C9A227]/40 object-cover transition-transform duration-500 group-hover:rotate-[8deg]"
           />
-          <span className="sr-only">ZAMANA — Vintage Timepieces</span>
-          <span className="hidden min-[420px]:block text-[10px] uppercase tracking-[0.3em] text-[#A69F8D]">
-            Bengaluru
+          <span className="flex flex-col leading-none">
+            <span className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[0.18em] text-[#1A1714]">
+              ZAMANA
+            </span>
+            <span className="mt-1 text-[9px] uppercase tracking-[0.34em] text-[#6E635A]">
+              Vintage Timepieces
+            </span>
           </span>
         </a>
 
@@ -56,7 +63,7 @@ export default function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[13px] font-normal uppercase tracking-[0.16em] text-[#EDE6D6]/85 transition-colors hover:text-[#C9A227]"
+              className="zamana-navlink text-[13px] font-medium uppercase tracking-[0.16em] text-[#3A332D] transition-colors hover:text-[#A8842C]"
             >
               {l.label}
             </a>
@@ -66,7 +73,7 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2">
           <a
             href="#auctions"
-            className="hidden items-center rounded-md border border-[#C9A227]/70 px-4 py-2 text-[12px] font-medium uppercase tracking-[0.18em] text-[#C9A227] transition-colors hover:bg-[#C9A227] hover:text-[#111110] sm:inline-flex"
+            className="hidden min-h-11 items-center rounded-full bg-[#1A1714] px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em] text-[#F6F1E7] transition-colors hover:bg-[#C9A227] hover:text-[#1A1714] sm:inline-flex"
           >
             Bid Now
           </a>
@@ -77,7 +84,7 @@ export default function SiteHeader() {
             aria-expanded={open}
             aria-controls="zamana-mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="inline-flex size-11 items-center justify-center rounded-md border border-[#2E2B26] text-[#EDE6D6] transition-colors hover:border-[#C9A227]/60 hover:text-[#C9A227] md:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-[rgba(26,23,20,0.12)] text-[#1A1714] transition-colors hover:border-[#C9A227]/60 hover:text-[#A8842C] md:hidden"
           >
             {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
           </button>
@@ -89,26 +96,26 @@ export default function SiteHeader() {
         <nav
           id="zamana-mobile-nav"
           aria-label="Mobile"
-          className="border-t border-[#2E2B26] bg-[#111110]/95 backdrop-blur-md md:hidden"
+          className="border-t border-[rgba(26,23,20,0.12)] bg-[#FBF8F1]/95 backdrop-blur-md md:hidden"
         >
           <ul className="mx-auto max-w-7xl px-4 py-3">
             {NAV_LINKS.map((l) => (
-              <li key={l.href} className="border-b border-[#2E2B26]/60 last:border-0">
+              <li key={l.href} className="border-b border-[rgba(26,23,20,0.08)] last:border-0">
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="flex min-h-11 items-center justify-between py-3 text-sm uppercase tracking-[0.16em] text-[#EDE6D6] transition-colors hover:text-[#C9A227]"
+                  className="flex min-h-11 items-center justify-between py-3 text-sm uppercase tracking-[0.16em] text-[#1A1714] transition-colors hover:text-[#A8842C]"
                 >
                   {l.label}
-                  <span className="text-[#C9A227]" aria-hidden>→</span>
+                  <span className="text-[#A8842C]" aria-hidden>→</span>
                 </a>
               </li>
             ))}
-            <li className="pt-3">
+            <li className="py-3">
               <a
                 href="#auctions"
                 onClick={() => setOpen(false)}
-                className="flex min-h-11 items-center justify-center rounded-md bg-gradient-to-b from-[#E0B93E] to-[#C9A227] text-sm font-semibold uppercase tracking-[0.18em] text-[#111110]"
+                className="flex min-h-11 items-center justify-center rounded-full bg-[#1A1714] text-sm font-medium uppercase tracking-[0.18em] text-[#F6F1E7] transition-colors hover:bg-[#C9A227] hover:text-[#1A1714]"
               >
                 Bid Now
               </a>

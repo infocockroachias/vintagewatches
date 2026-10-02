@@ -46,10 +46,10 @@ export default function Countdown({
       className={cn(
         "font-[family-name:var(--font-sans-zamana)] tabular-nums tracking-widest text-xs",
         diff <= 0
-          ? "text-[#A69F8D]"
+          ? "text-[#6E635A]"
           : urgent
-            ? "animate-pulse text-[#E08844]"
-            : "text-[#C9A227]",
+            ? "animate-pulse text-[#C05621]"
+            : "text-[#A8842C]",
         className
       )}
     >

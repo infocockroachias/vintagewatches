@@ -1,6 +1,6 @@
 "use client";
 
-// ZAMANA — Vintage Timepieces, Bengaluru.
+// ZAMANA — Vintage Timepieces.
 // Single-page composition. All catalog/auction state lives here:
 //  · GET /api/watches on mount + every 15s (live statuses, bid counts)
 //  · selectedId opens the WatchDialog (it fetches its own detail + bids)
@@ -10,13 +10,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import AuctionSection from "@/components/zamana/auction-section";
 import BrandMarquee from "@/components/zamana/brand-marquee";
 import CollectionSection from "@/components/zamana/collection-section";
+import ConciergeSection from "@/components/zamana/concierge-section";
 import ConsignSection from "@/components/zamana/consign-section";
 import FeaturedStrip from "@/components/zamana/featured-strip";
 import SiteFooter from "@/components/zamana/site-footer";
 import SiteHeader from "@/components/zamana/site-header";
 import SiteHero from "@/components/zamana/site-hero";
 import StorySection from "@/components/zamana/story-section";
-import VisitSection from "@/components/zamana/visit-section";
 import WatchDialog from "@/components/zamana/watch-dialog";
 import type { WatchWithAuction } from "@/components/zamana/types";
 
@@ -52,7 +52,7 @@ export default function Home() {
   const onDataChanged = useCallback(() => void refreshRef.current(), []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#111110] text-[#EDE6D6]">
+    <div className="zamana-paper flex min-h-screen flex-col bg-[#FBF8F1] text-[#1A1714]">
       <SiteHeader />
 
       <main className="flex-1">
@@ -63,7 +63,7 @@ export default function Home() {
         <AuctionSection watches={watches} onSelect={openDialog} />
         <ConsignSection />
         <StorySection />
-        <VisitSection />
+        <ConciergeSection />
       </main>
 
       <SiteFooter />

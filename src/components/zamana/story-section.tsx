@@ -1,6 +1,8 @@
 "use client";
 
-// Our story — editorial band with collage, heritage timeline and value props.
+// Our story — the second dark editorial band (JWC founder-section rhythm).
+// Collage, heritage timeline and value props. No physical address anywhere —
+// ZAMANA is presented as an online boutique.
 
 import { motion } from "framer-motion";
 import { BadgeCheck, ShieldCheck, Wrench } from "lucide-react";
@@ -25,32 +27,37 @@ export default function StorySection() {
     <section
       id="story"
       aria-label="Our story"
-      className="zamana-grain relative scroll-mt-20 border-y border-[#2E2B26] bg-[#1A1917]"
+      className="zamana-grain relative scroll-mt-20 border-y border-[#161311] bg-[#161311] text-[#F6F1E7]"
     >
-      <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-28">
+      <div className="relative mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-28">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Copy */}
           <div>
             <SectionHeading
+              tone="dark"
               kicker="Where Heritage Meets Wrist"
-              title="Born in Bengaluru, ticking since forever."
+              title={
+                <>
+                  Born of Indian watchmaking,{" "}
+                  <em className="text-[#E4C97A]">ticking</em> since forever.
+                </>
+              }
             >
               <div className="mt-6 space-y-5 text-base font-light leading-relaxed text-[#A69F8D]">
                 <p>
                   ZAMANA began with three collectors, one borrowed loupe and a
-                  shared weakness for the watch cabinets of Indiranagar. What
-                  started as Sunday hunts through Commercial Street drawers grew
-                  into this room — a boutique where Japanese and Swiss
-                  mechanicals are restored the slow way, by hand, on this side
-                  of the city.
+                  shared weakness for estate sales. What started as Sunday hunts
+                  through grandmother&apos;s cupboards and dealer drawers grew into
+                  this atelier — an online boutique where Japanese and Swiss
+                  mechanicals are restored the slow way, by hand, before they are
+                  packed and shipped to your door.
                 </p>
                 <p>
-                  We hold a soft spot for HMT, the timekeeper of the nation,
-                  whose factory stood right here in Bengaluru. Every piece that
-                  leaves us — from a ₹ xxx Timex LED to a pre-Moon Speedmaster —
-                  is authenticated, serviced and timed by our watchmaker, and
-                  carries a six-month written warranty. Time keeps the best
-                  stories; we just make sure they keep ticking too.
+                  We hold a soft spot for HMT, the timekeeper of the nation. Every
+                  piece that leaves us — from a ₹ xxx Timex LED to a pre-Moon
+                  Speedmaster — is authenticated, serviced and timed by our
+                  watchmaker, and carries a six-month written warranty. Time keeps
+                  the best stories; we just make sure they keep ticking too.
                 </p>
               </div>
             </SectionHeading>
@@ -69,10 +76,10 @@ export default function StorySection() {
                     className="relative flex flex-1 flex-col items-center gap-2 text-center"
                   >
                     <span
-                      className={`z-10 size-[15px] rounded-full border-2 ${i === TIMELINE.length - 1 ? "border-[#C9A227] bg-[#C9A227]" : "border-[#C9A227] bg-[#1A1917]"}`}
+                      className={`z-10 size-[15px] rounded-full border-2 ${i === TIMELINE.length - 1 ? "border-[#C9A227] bg-[#C9A227]" : "border-[#C9A227] bg-[#161311]"}`}
                       aria-hidden
                     />
-                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-[#EDE6D6]">{t.year}</span>
+                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-[#F6F1E7]">{t.year}</span>
                     <span className="text-[10px] uppercase tracking-[0.12em] text-[#A69F8D]">{t.label}</span>
                   </motion.div>
                 ))}
@@ -82,7 +89,7 @@ export default function StorySection() {
             {/* Value props */}
             <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-4">
               {VALUES.map((v) => (
-                <li key={v.label} className="flex items-center gap-2.5 text-sm text-[#EDE6D6]">
+                <li key={v.label} className="flex items-center gap-2.5 text-sm text-[#F6F1E7]">
                   <v.icon className="size-4 text-[#C9A227]" aria-hidden />
                   {v.label}
                 </li>
@@ -109,7 +116,7 @@ export default function StorySection() {
                   src="/watches/w21.jpg"
                   alt="1950s Rolex Oyster Perpetual with tropical patina dial"
                   loading="lazy"
-                  className="relative h-full w-full border border-[#2E2B26] object-cover"
+                  className="relative h-full w-full border border-[rgba(228,201,122,0.2)] object-cover"
                 />
                 <figcaption className="sr-only">A patina-dial Oyster Perpetual from the 1950s</figcaption>
               </figure>
@@ -123,7 +130,7 @@ export default function StorySection() {
                   src="/watches/w22.jpg"
                   alt="Omega Speedmaster Broad Arrow chronograph from 1959"
                   loading="lazy"
-                  className="relative aspect-square w-full border border-[#2E2B26] object-cover"
+                  className="relative aspect-square w-full border border-[rgba(228,201,122,0.2)] object-cover"
                 />
               </figure>
               {/* Bottom right */}
@@ -134,14 +141,14 @@ export default function StorySection() {
                 />
                 <img
                   src="/watches/w04.jpg"
-                  alt="HMT Janata hand-wound watch made in Bangalore"
+                  alt="HMT Janata hand-wound watch made in India"
                   loading="lazy"
-                  className="relative aspect-square w-full border border-[#2E2B26] object-cover"
+                  className="relative aspect-square w-full border border-[rgba(228,201,122,0.2)] object-cover"
                 />
               </figure>
             </div>
             <p className="mt-6 text-center text-[11px] uppercase tracking-[0.3em] text-[#A69F8D]">
-              Indiranagar · Bengaluru · 560038
+              Serviced with love · Shipped with insurance
             </p>
           </motion.div>
         </div>

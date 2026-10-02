@@ -1,4 +1,4 @@
-// ZAMANA — Vintage Timepieces, Bengaluru
+// ZAMANA — Vintage Timepieces
 // Catalog of 50 vintage watches. Prices are intentionally masked as "₹ xxx"
 // until exact pricing is provided by the owner.
 

@@ -1,6 +1,6 @@
 "use client";
 
-// WatchDialog — product theatre for a single piece.
+// WatchDialog — product theatre for a single piece (light atelier styling).
 // Fixed pieces: masked price + inline enquiry (POST /api/consign).
 // Auction pieces: live bid panel (POST /api/bids) + bid history,
 // polling GET /api/watches/{id} every 8s while open.
@@ -178,7 +178,7 @@ export default function WatchDialog({
             model: `${watch.ref} — ${watch.name}`,
             year: watch.year,
             condition: watch.condition,
-            notes: "Viewing / purchase enquiry from the collection.",
+            notes: "Purchase enquiry from the online collection.",
           }),
         });
         const json = await res.json();
@@ -210,13 +210,13 @@ export default function WatchDialog({
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-h-[92vh] gap-0 overflow-y-auto border-[#2E2B26] bg-[#1A1917] p-0 sm:max-w-3xl">
+      <DialogContent className="max-h-[92vh] gap-0 overflow-y-auto rounded-md border-[rgba(26,23,20,0.14)] bg-[#FBF8F1] p-0 text-[#1A1714] sm:max-w-3xl">
         {failed ? (
           <div className="px-6 py-16 text-center">
-            <DialogTitle className="font-[family-name:var(--font-display)] text-2xl text-[#EDE6D6]">
+            <DialogTitle className="font-[family-name:var(--font-display)] text-2xl text-[#1A1714]">
               This piece stepped out of the cabinet.
             </DialogTitle>
-            <DialogDescription className="mt-3 text-[#A69F8D]">
+            <DialogDescription className="mt-3 text-[#6E635A]">
               It may have been sold since you loaded the page — browse the collection for its cousins.
             </DialogDescription>
           </div>
@@ -226,27 +226,27 @@ export default function WatchDialog({
             <DialogDescription className="sr-only">
               Fetching the latest details and bid state from the workshop.
             </DialogDescription>
-            <Skeleton className="aspect-square w-full rounded-none bg-[#201E1B]" />
+            <Skeleton className="aspect-square w-full rounded-none bg-[#F1EADC]" />
             <div className="space-y-4 p-6">
-              <Skeleton className="h-3 w-24 bg-[#201E1B]" />
-              <Skeleton className="h-7 w-4/5 bg-[#201E1B]" />
-              <Skeleton className="h-4 w-full bg-[#201E1B]" />
-              <Skeleton className="h-4 w-full bg-[#201E1B]" />
-              <Skeleton className="h-24 w-full bg-[#201E1B]" />
+              <Skeleton className="h-3 w-24 bg-[#F1EADC]" />
+              <Skeleton className="h-7 w-4/5 bg-[#F1EADC]" />
+              <Skeleton className="h-4 w-full bg-[#F1EADC]" />
+              <Skeleton className="h-4 w-full bg-[#F1EADC]" />
+              <Skeleton className="h-24 w-full bg-[#F1EADC]" />
             </div>
           </div>
         ) : (
           <div>
             {/* Two columns: image + details */}
             <div className="grid md:grid-cols-2">
-              <div className="relative overflow-hidden bg-[#EDE6D6]">
+              <div className="relative overflow-hidden bg-[#F1EADC]">
                 <img
                   src={watch.image}
                   alt={`${watch.brand} ${watch.name}, ${watch.year}, ${watch.condition}`}
                   className="aspect-square h-full w-full object-cover"
                 />
                 {ended && (
-                  <span className="absolute left-3 top-3 border border-[#C9A227]/50 bg-[#111110]/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C9A227]">
+                  <span className="absolute left-3 top-3 border border-[#C9A227]/50 bg-[#161311]/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#E4C97A]">
                     Lot closed
                   </span>
                 )}
@@ -254,32 +254,32 @@ export default function WatchDialog({
 
               <div className="flex flex-col gap-4 p-5 md:p-7">
                 <div>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#C9A227]">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#A8842C]">
                     {watch.ref} · {watch.era} · {watch.year}
                   </p>
-                  <DialogTitle className="mt-2 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#EDE6D6] md:text-3xl">
+                  <DialogTitle className="mt-2 font-[family-name:var(--font-display)] text-2xl leading-tight text-[#1A1714] md:text-3xl">
                     {watch.name}
                   </DialogTitle>
-                  <DialogDescription className="mt-1.5 text-sm font-light text-[#A69F8D]">
+                  <DialogDescription className="mt-1.5 text-sm font-light text-[#6E635A]">
                     {watch.brand} · {watch.movement}
                   </DialogDescription>
                 </div>
 
-                <p className="text-sm font-light leading-relaxed text-[#EDE6D6]/85">
+                <p className="text-sm font-light leading-relaxed text-[#3A332D]">
                   {watch.story}
                 </p>
 
                 {/* Spec table */}
-                <dl className="border-t border-[#2E2B26]">
+                <dl className="border-t border-[rgba(26,23,20,0.12)]">
                   {SPEC_ROWS.map((row) => (
                     <div
                       key={row.label}
-                      className="flex items-start justify-between gap-6 border-b border-[#2E2B26]/70 py-2.5"
+                      className="flex items-start justify-between gap-6 border-b border-[rgba(26,23,20,0.08)] py-2.5"
                     >
-                      <dt className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-[#A69F8D]">
+                      <dt className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-[#6E635A]">
                         {row.label}
                       </dt>
-                      <dd className="text-right text-sm font-light text-[#EDE6D6]">
+                      <dd className="text-right text-sm font-light text-[#1A1714]">
                         {String(watch[row.key])}
                       </dd>
                     </div>
@@ -288,27 +288,27 @@ export default function WatchDialog({
 
                 {/* Price / bid block */}
                 {watch.stockType === "fixed" ? (
-                  <div className="mt-auto border border-[#2E2B26] bg-[#111110] p-5">
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-[#A69F8D]">Fixed price</p>
-                    <p className="mt-1 font-[family-name:var(--font-display)] text-3xl text-[#C9A227]">
+                  <div className="mt-auto rounded-sm border border-[rgba(26,23,20,0.12)] bg-white p-5">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-[#6E635A]">Buy now — fixed price</p>
+                    <p className="mt-1 font-[family-name:var(--font-display)] text-3xl text-[#A8842C]">
                       {watch.price}
                     </p>
-                    <p className="mt-2 text-xs font-light text-[#A69F8D]">
-                      Final pricing on request — enquire to book a viewing.
+                    <p className="mt-2 text-xs font-light text-[#6E635A]">
+                      Final pricing on request — enquire and we&apos;ll confirm, ship insured.
                     </p>
 
                     {!enquiryOpen ? (
                       <Button
                         onClick={() => setEnquiryOpen(true)}
-                        className="mt-4 min-h-11 w-full bg-gradient-to-b from-[#E0B93E] to-[#C9A227] font-semibold uppercase tracking-[0.16em] text-[#111110] transition-all hover:from-[#C9A227] hover:to-[#B08F1F]"
+                        className="zamana-cta mt-4 min-h-11 w-full rounded-full font-semibold uppercase tracking-[0.16em] transition-transform hover:scale-[1.01]"
                       >
                         <BadgeCheck className="size-4" aria-hidden />
-                        Enquire / Book Viewing
+                        Buy Now / Enquire
                       </Button>
                     ) : (
                       <form onSubmit={submitEnquiry} className="mt-4 space-y-3">
                         <div className="space-y-1.5">
-                          <Label htmlFor="eq-name" className="text-[11px] uppercase tracking-[0.18em] text-[#A69F8D]">
+                          <Label htmlFor="eq-name" className="text-[11px] uppercase tracking-[0.18em] text-[#6E635A]">
                             Your name
                           </Label>
                           <Input
@@ -317,11 +317,11 @@ export default function WatchDialog({
                             onChange={(e) => setEqName(e.target.value)}
                             placeholder="e.g. Ananya Rao"
                             autoComplete="name"
-                            className="min-h-11 border-[#2E2B26] bg-[#1A1917] text-[#EDE6D6] placeholder:text-[#A69F8D]/60"
+                            className="min-h-11 border-[rgba(26,23,20,0.14)] bg-[#FBF8F1] text-[#1A1714] placeholder:text-[#6E635A]/60"
                           />
                         </div>
                         <div className="space-y-1.5">
-                          <Label htmlFor="eq-phone" className="text-[11px] uppercase tracking-[0.18em] text-[#A69F8D]">
+                          <Label htmlFor="eq-phone" className="text-[11px] uppercase tracking-[0.18em] text-[#6E635A]">
                             Phone (India)
                           </Label>
                           <Input
@@ -332,13 +332,13 @@ export default function WatchDialog({
                             onChange={(e) => setEqPhone(e.target.value)}
                             placeholder="+91 …"
                             autoComplete="tel"
-                            className="min-h-11 border-[#2E2B26] bg-[#1A1917] text-[#EDE6D6] placeholder:text-[#A69F8D]/60"
+                            className="min-h-11 border-[rgba(26,23,20,0.14)] bg-[#FBF8F1] text-[#1A1714] placeholder:text-[#6E635A]/60"
                           />
                         </div>
                         <Button
                           type="submit"
                           disabled={eqBusy}
-                          className="min-h-11 w-full bg-gradient-to-b from-[#E0B93E] to-[#C9A227] font-semibold uppercase tracking-[0.16em] text-[#111110] hover:from-[#C9A227] hover:to-[#B08F1F]"
+                          className="zamana-cta min-h-11 w-full rounded-full font-semibold uppercase tracking-[0.16em]"
                         >
                           {eqBusy && <Loader2 className="size-4 animate-spin" aria-hidden />}
                           Request a Call
@@ -347,10 +347,10 @@ export default function WatchDialog({
                     )}
                   </div>
                 ) : (
-                  <div className="mt-auto border border-[#2E2B26] bg-[#111110] p-5">
+                  <div className="mt-auto rounded-sm border border-[rgba(26,23,20,0.12)] bg-white p-5">
                     {auction && auction.endsAt && (
                       <div className="mb-4 flex items-center justify-between gap-3">
-                        <span className="text-[10px] uppercase tracking-[0.24em] text-[#A69F8D]">
+                        <span className="text-[10px] uppercase tracking-[0.24em] text-[#6E635A]">
                           {live ? "Closes in" : "Closed"}
                         </span>
                         <Countdown endsAt={auction.endsAt} />
@@ -360,45 +360,45 @@ export default function WatchDialog({
                     {hasBids ? (
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <p>
-                          <span className="mr-1.5 text-[10px] uppercase tracking-[0.2em] text-[#A69F8D]">Current bid</span>
-                          <span className="font-[family-name:var(--font-display)] text-2xl text-[#C9A227]">
+                          <span className="mr-1.5 text-[10px] uppercase tracking-[0.2em] text-[#6E635A]">Current bid</span>
+                          <span className="font-[family-name:var(--font-display)] text-2xl text-[#A8842C]">
                             {formatINR(auction!.currentHigh as number)}
                           </span>
                         </p>
-                        <p className="text-xs text-[#A69F8D]">
+                        <p className="text-xs text-[#6E635A]">
                           {auction!.bidCount} {auction!.bidCount === 1 ? "bid" : "bids"}
                         </p>
                       </div>
                     ) : (
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <p>
-                          <span className="mr-1.5 text-[10px] uppercase tracking-[0.2em] text-[#A69F8D]">Opening bid</span>
-                          <span className="font-[family-name:var(--font-display)] text-2xl text-[#C9A227]">{watch.price}</span>
+                          <span className="mr-1.5 text-[10px] uppercase tracking-[0.2em] text-[#6E635A]">Opening bid</span>
+                          <span className="font-[family-name:var(--font-display)] text-2xl text-[#A8842C]">{watch.price}</span>
                         </p>
-                        <span className="rounded-full border border-[#C9A227]/40 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-[#C9A227]">
+                        <span className="rounded-full border border-[#C9A227]/40 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-[#A8842C]">
                           Reserve sealed
                         </span>
                       </div>
                     )}
 
                     {ended ? (
-                      <p className="mt-4 border-t border-[#2E2B26] pt-4 text-sm font-light text-[#A69F8D]">
+                      <p className="mt-4 border-t border-[rgba(26,23,20,0.12)] pt-4 text-sm font-light text-[#6E635A]">
                         This lot has closed and bidding is sealed — like all good
                         stories, the ending stays between us and the gavel.
                         {hasBids && auction?.currentHigh != null && (
-                          <> Final standing bid: <span className="text-[#C9A227]">{formatINR(auction.currentHigh)}</span>.</>
+                          <> Final standing bid: <span className="text-[#A8842C]">{formatINR(auction.currentHigh)}</span>.</>
                         )}
                       </p>
                     ) : (
                       <form onSubmit={submitBid} noValidate className="mt-4 space-y-3">
                         {minNext && (
-                          <p className="text-xs text-[#A69F8D]">
-                            Minimum next bid <span className="text-[#C9A227]">{minNext}</span> (₹{MIN_BID_INCREMENT} increments)
+                          <p className="text-xs text-[#6E635A]">
+                            Minimum next bid <span className="text-[#A8842C]">{minNext}</span> (₹{MIN_BID_INCREMENT} increments)
                           </p>
                         )}
                         <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-1.5">
-                            <Label htmlFor="bid-name" className="text-[11px] uppercase tracking-[0.18em] text-[#A69F8D]">
+                            <Label htmlFor="bid-name" className="text-[11px] uppercase tracking-[0.18em] text-[#6E635A]">
                               Name
                             </Label>
                             <Input
@@ -407,11 +407,11 @@ export default function WatchDialog({
                               onChange={(e) => setBidder(e.target.value)}
                               placeholder="Your name"
                               autoComplete="name"
-                              className="min-h-11 border-[#2E2B26] bg-[#1A1917] text-[#EDE6D6] placeholder:text-[#A69F8D]/60"
+                              className="min-h-11 border-[rgba(26,23,20,0.14)] bg-[#FBF8F1] text-[#1A1714] placeholder:text-[#6E635A]/60"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <Label htmlFor="bid-amount" className="text-[11px] uppercase tracking-[0.18em] text-[#A69F8D]">
+                            <Label htmlFor="bid-amount" className="text-[11px] uppercase tracking-[0.18em] text-[#6E635A]">
                               Bid (₹)
                             </Label>
                             <Input
@@ -422,7 +422,7 @@ export default function WatchDialog({
                               value={amount}
                               onChange={(e) => setAmount(e.target.value)}
                               placeholder="25000"
-                              className="min-h-11 border-[#2E2B26] bg-[#1A1917] text-[#EDE6D6] placeholder:text-[#A69F8D]/60"
+                              className="min-h-11 border-[rgba(26,23,20,0.14)] bg-[#FBF8F1] text-[#1A1714] placeholder:text-[#6E635A]/60"
                             />
                           </div>
                         </div>
@@ -430,7 +430,7 @@ export default function WatchDialog({
                           type="submit"
                           disabled={submitting}
                           aria-label="Place your bid"
-                          className="min-h-11 w-full bg-gradient-to-b from-[#E0B93E] to-[#C9A227] font-semibold uppercase tracking-[0.16em] text-[#111110] transition-all hover:from-[#C9A227] hover:to-[#B08F1F]"
+                          className="zamana-cta min-h-11 w-full rounded-full font-semibold uppercase tracking-[0.16em] transition-transform hover:scale-[1.01]"
                         >
                           {submitting ? (
                             <Loader2 className="size-4 animate-spin" aria-hidden />
@@ -439,8 +439,8 @@ export default function WatchDialog({
                           )}
                           Place Bid
                         </Button>
-                        <p className="flex items-center gap-1.5 text-[11px] font-light text-[#A69F8D]">
-                          <ShieldCheck className="size-3.5 text-[#C9A227]" aria-hidden />
+                        <p className="flex items-center gap-1.5 text-[11px] font-light text-[#6E635A]">
+                          <ShieldCheck className="size-3.5 text-[#A8842C]" aria-hidden />
                           Bids are binding intentions — our curator confirms each lot by phone.
                         </p>
                       </form>
@@ -452,12 +452,12 @@ export default function WatchDialog({
 
             {/* Bid history */}
             {watch.stockType === "auction" && (
-              <div className="border-t border-[#2E2B26] p-5 md:p-7">
-                <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.28em] text-[#C9A227]">
+              <div className="border-t border-[rgba(26,23,20,0.12)] p-5 md:p-7">
+                <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.28em] text-[#A8842C]">
                   Bid History
                 </h3>
                 {bids.length === 0 ? (
-                  <p className="text-sm font-light italic text-[#A69F8D]">
+                  <p className="text-sm font-light italic text-[#6E635A]">
                     No strikes yet — the first bid breaks the seal.
                   </p>
                 ) : (
@@ -467,27 +467,27 @@ export default function WatchDialog({
                         key={b.id}
                         className={
                           i === 0
-                            ? "flex items-center justify-between gap-4 rounded-md border border-[#C9A227]/40 bg-[#C9A227]/[0.06] px-3 py-2.5"
-                            : "flex items-center justify-between gap-4 rounded-md px-3 py-2.5 hover:bg-[#201E1B]"
+                            ? "flex items-center justify-between gap-4 rounded-md border border-[#C9A227]/40 bg-[#C9A227]/[0.08] px-3 py-2.5"
+                            : "flex items-center justify-between gap-4 rounded-md px-3 py-2.5 hover:bg-[#F1EADC]"
                         }
                       >
                         <span className="flex min-w-0 items-center gap-3">
                           <span
-                            className="size-1.5 shrink-0 rounded-full bg-[#C9A227]"
+                            className="size-1.5 shrink-0 rounded-full bg-[#A8842C]"
                             aria-hidden
                           />
-                          <span className="truncate text-sm font-light text-[#EDE6D6]">{b.bidder}</span>
+                          <span className="truncate text-sm font-light text-[#1A1714]">{b.bidder}</span>
                           {i === 0 && (
-                            <span className="shrink-0 rounded-full bg-gradient-to-b from-[#E0B93E] to-[#C9A227] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#111110]">
+                            <span className="shrink-0 rounded-full bg-[#1A1714] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#E4C97A]">
                               Highest
                             </span>
                           )}
                         </span>
                         <span className="flex shrink-0 items-baseline gap-3">
-                          <span className="font-[family-name:var(--font-display)] text-sm text-[#C9A227]">
+                          <span className="font-[family-name:var(--font-display)] text-sm text-[#A8842C]">
                             {formatINR(b.amount)}
                           </span>
-                          <span className="w-16 text-right text-[11px] text-[#A69F8D]">{timeAgo(b.at)}</span>
+                          <span className="w-16 text-right text-[11px] text-[#6E635A]">{timeAgo(b.at)}</span>
                         </span>
                       </li>
                     ))}

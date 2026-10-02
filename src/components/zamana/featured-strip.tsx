@@ -22,9 +22,9 @@ export default function FeaturedStrip({
     <section id="featured" aria-label="Curator's picks" className="scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-28">
         <SectionHeading kicker="The Curator's Picks" title="Signature timepieces">
-          <p className="mt-4 max-w-2xl text-base font-light text-[#A69F8D]">
+          <p className="mt-4 max-w-2xl text-base font-light text-[#6E635A]">
             Hand-picked by our watchmaker — the pieces we would happily wear
-            ourselves. Ask us anything in person; the kettle is always warm.
+            ourselves. Ask us anything; the kettle is always warm.
           </p>
         </SectionHeading>
 
@@ -43,7 +43,7 @@ export default function FeaturedStrip({
             </div>
           </div>
         ) : (
-          <p className="mt-12 font-[family-name:var(--font-display)] text-lg italic text-[#A69F8D]">
+          <p className="mt-12 font-[family-name:var(--font-display)] text-lg italic text-[#6E635A]">
             The curator is re-stocking this shelf — check back shortly.
           </p>
         )}

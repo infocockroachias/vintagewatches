@@ -18,30 +18,33 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "ZAMANA — Vintage Timepieces · Bengaluru",
+  title: "ZAMANA — Vintage Timepieces · Buy, Bid & Collect Online",
   description:
-    "ZAMANA is Bengaluru's boutique for authenticated vintage watches — Seiko, Grand Seiko, HMT, Rolex, Omega and more. Buy rare pieces and bid in live auctions. Time keeps the best stories.",
+    "ZAMANA is an online boutique for authenticated vintage watches — Seiko, Grand Seiko, HMT, Rolex, Omega and more. Buy rare pieces outright or bid in live auctions. Time keeps the best stories.",
   keywords: [
     "vintage watches",
     "Seiko vintage",
     "HMT watches",
-    "Bangalore watches",
     "watch auction India",
+    "buy vintage watches online",
     "ZAMANA",
   ],
-  authors: [{ name: "ZAMANA, Bengaluru" }],
-  icons: { icon: "/brand/favicon.jpg" },
+  authors: [{ name: "ZAMANA" }],
+  icons: {
+    icon: [{ url: "/brand/favicon.jpg", type: "image/jpeg" }],
+    apple: [{ url: "/brand/logo.png", type: "image/png" }],
+  },
   openGraph: {
-    title: "ZAMANA — Vintage Timepieces · Bengaluru",
+    title: "ZAMANA — Vintage Timepieces",
     description:
-      "50 authenticated vintage watches. Live bidding. Bengaluru. Time keeps the best stories.",
+      "50 authenticated vintage watches. Buy now or bid live. Time keeps the best stories.",
     images: ["/brand/hero.jpg"],
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111110",
+  themeColor: "#FBF8F1",
 };
 
 export default function RootLayout({
@@ -50,13 +53,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${jost.variable} antialiased bg-[#111110] text-[#EDE6D6] font-[family-name:var(--font-sans-zamana)]`}
+        className={`${playfair.variable} ${jost.variable} antialiased bg-[#FBF8F1] text-[#1A1714] font-[family-name:var(--font-sans-zamana)]`}
       >
         {children}
         <Toaster />
-        <Sonner position="top-center" richColors theme="dark" />
+        <Sonner position="top-center" richColors theme="light" />
       </body>
     </html>
   );

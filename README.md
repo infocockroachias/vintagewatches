@@ -82,12 +82,29 @@ bun run lint       # ESLint
 ## Deploy to Vercel
 
 1. Push this repository to GitHub (already done).
-2. In [Vercel](https://vercel.com/new), import the repo — **no environment variables needed**, framework preset *Next.js*, build command `next build` (default).
+2. In [Vercel](https://vercel.com/new), import the repo — **no environment variables needed**, framework preset *Next.js*, build command `next build` (default). Leave **Root Directory** empty.
 3. Deploy. The app is 100% self-contained: static catalog + in-memory API routes.
 
 > **Note:** do **not** set `output: "standalone"` in `next.config.ts` — it breaks Vercel's build-output routing (manifests as `404 NOT_FOUND` on the deployment URL). The config intentionally omits it.
 
 > On Vercel, each serverless instance keeps its own memory store. Bidding works fully within an instance; a cold start reseeds timers and clears bids. For persistent auctions, wire a database/KV into `src/lib/store.ts`.
+
+### Why the site showed `404 NOT_FOUND` — and how to fix it
+
+**Root cause.** An early commit (`004aea9`) shipped `next.config.ts` with `output: "standalone"`. On Vercel that builds fine but serves **`404 NOT_FOUND` for every route** (`/`, `/api/*`, static assets) because Vercel's routing layer cannot resolve a standalone build. The fix (removing it) landed in commit `af5c376` — but the **production deployment on Vercel is still the old, broken build**, so the URL keeps returning:
+
+```
+The page could not be found
+NOT_FOUND
+```
+
+(Diagnostic tip: `x-vercel-error: NOT_FOUND` = a deployment exists but can't route — the `standalone` signature. `x-vercel-error: DEPLOYMENT_NOT_FOUND` = no deployment at that domain at all.)
+
+**Fix — pick whichever applies:**
+
+- **Project is connected to GitHub:** open the Vercel Dashboard → project **vintagewatches** → *Deployments* → the latest deployment → **⋯ → Redeploy**, and **uncheck "Use existing build cache"**. Vercel rebuilds from the current `main` (which no longer has `standalone`) and the 404 disappears. Confirm the new deployment's commit is the latest on `main`.
+- **Project is NOT connected / you're unsure:** go to [vercel.com/new](https://vercel.com/new) → *Import* `infocockroachias/vintagewatches` → framework auto-detects as **Next.js** → leave *Root Directory* and all env vars empty → **Deploy**. If the project name `vintagewatches` is taken by the old project, rename or delete the old one first so the new deployment gets the `vintagewatches.vercel.app` domain.
+- **After deploying, verify:** `/` renders the ZAMANA boutique and `/api/watches` returns JSON. If both work, the issue is permanently resolved.
 
 ## Project structure
 

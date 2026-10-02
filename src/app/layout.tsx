@@ -18,6 +18,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://vintagewatches.vercel.app"),
   title: "ZAMANA — Vintage Timepieces · Buy, Bid & Collect Online",
   description:
     "ZAMANA is an online boutique for authenticated vintage watches — Seiko, Grand Seiko, HMT, Rolex, Omega and more. Buy rare pieces outright or bid in live auctions. Time keeps the best stories.",
